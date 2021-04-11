@@ -1,0 +1,26 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - export DLLVERSION=$(date +1.0.%y%j.%H%M)
+      - echo "<BuildInfo>" >> buildinfo.xml
+      - echo "<CODEBUILD_BUILD_ID>"$CODEBUILD_BUILD_ID"</CODEBUILD_BUILD_ID>" >> buildinfo.xml
+      - echo "<CODEBUILD_SOURCE_VERSION>"$CODEBUILD_SOURCE_VERSION"</CODEBUILD_SOURCE_VERSION>" >> buildinfo.xml
+      - echo "<DLLVERSION>"$DLLVERSION"</DLLVERSION>" >> buildinfo.xml
+      - echo "<CODEBUILD_BUILD_IMAGE>"$CODEBUILD_BUILD_IMAGE"</CODEBUILD_BUILD_IMAGE>" >> buildinfo.xml
+      - echo "<CODEBUILD_INITIATOR>"$CODEBUILD_INITIATOR"</CODEBUILD_INITIATOR>" >> buildinfo.xml
+      - echo "<CODEUBUILD_KMS_KEY_ID>"$CODEUBUILD_KMS_KEY_ID"</CODEUBUILD_KMS_KEY_ID>" >> buildinfo.xml
+      - echo "</BuildInfo>" >> buildinfo.xml
+      - dotnet restore SuperNova.DevOps.sln
+  build:
+    commands:
+     - dotnet build SuperNova.DevOps.sln -c Release /fl /p:Version=$DLLVERSION /p:DebugSymbols=false /p:DebugType=None
+  post_build:
+    commands:
+     - dotnet publish SuperNova.DevOps.sln -f netcoreapp3.1 -c Release /p:Version=$DLLVERSION /p:DebugSymbols=false /p:DebugType=None  
+artifacts:
+  files:
+    - buildinfo.xml
+    - bin/publish/*
+    - bin/publish/runtimes/unix/lib/netcoreapp3.0/*
+  discard-paths: no
