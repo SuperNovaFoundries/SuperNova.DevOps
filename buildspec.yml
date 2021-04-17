@@ -23,4 +23,5 @@ artifacts:
     - buildinfo.xml
     - bin/publish/*
     - bin/publish/runtimes/unix/lib/netcoreapp3.0/*
+    - bin/publish/runtimes/unix/lib/netcoreapp2.1/*
   discard-paths: no
