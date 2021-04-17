@@ -62,9 +62,10 @@ namespace SuperNova.DevOps
            
         }
 
-        private void InjectVersionIntoTemplate(string template, object version)
+        private void InjectVersionIntoTemplate(string template, string version)
         {
             var fileText = File.ReadAllText(template).Replace(".zip", $".{version}.zip");
+            fileText = fileText.Replace("12j7jz", version);
             File.WriteAllText(template, fileText);
         }
 

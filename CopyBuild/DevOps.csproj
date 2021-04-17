@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -26,7 +26,7 @@
     <PackageReference Include="AWSSDK.Lambda" Version="3.7.0.9" />
     <PackageReference Include="AWSSDK.S3" Version="3.7.0.10" />
     <PackageReference Include="DotNetZip" Version="1.15.0" />
-    <PackageReference Include="SuperNova.Common" Version="1.0.21101.555" />
+    <PackageReference Include="SuperNova.AWS.Logging" Version="1.0.21101.2020" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 using Amazon.Lambda.S3Events;
 using Common;
 using Microsoft.Extensions.Logging;
+using SuperNova.AWS.Logging.Contract;
 using System;
 using System.Composition;
 using System.Linq;
@@ -10,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace SuperNova.DevOps
 {
-
     class CopyBuildLambda
     {
         [Import]
         private IServiceLoggerFactory _logFactory { get; set; } = null;
         private ILogger _logger;
+
         public CopyBuildLambda()
         {
             MEFLoader.SatisfyImportsOnce(this);
